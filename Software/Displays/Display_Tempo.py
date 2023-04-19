@@ -32,7 +32,7 @@ display.show()
 display.fill(0)                        # preenche toda a tela com cor = 0
 
 display.hline(0, 10, 200, 1)            # desenha uma linha horizontal x = 0, y = 10, altura = 200, cor = 1
-display.vline(64,5,47,1)				#desenha uma linha vertical (x,y,h,cor)
+display.vline(64,5,47,1)                #desenha uma linha vertical (x,y,h,cor)
 
 display.text('Jog. 1 | Jog. 2', 4, 0, 1)  # desenha algum texto em x = 40, y = 0 , cor = 1
 
