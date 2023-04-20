@@ -38,22 +38,30 @@ print(j2)
 
 
 while(1):
-    if bot1.value() == 1:
-        Selecionado.value(0)
-        j1+=1
-        print("Jogador 1:")
-        print(j1)
-        print("Jogador 2: ")
-        print(j2)
-        break
+    while(1):
+        if bot1.value() == 1:
+            Selecionado.value(0)
+            j1+=1
+            print("Jogador 1:")
+            print(j1)
+            print("Jogador 2: ")
+            print(j2)
+            Selecionado = Leds[random.randint(0, 3)] #ta selecionando mais de 1 por vez e adiciona muito no jogador1
+            Selecionado.value(1)
+            print(Selecionado)
+            bot1.value(0)
+    
 
-    if bot2.value() == 1:
-        Selecionado.value(0)
-        j2+=1
-        print("Jogador 1:")
-        print(j1)
-        print("Jogador 2: ")
-        print(j2)
-        break
-        
+
+        if bot2.value() == 1:
+            Selecionado.value(0)
+            j2+=1
+            print("Jogador 1:")
+            print(j1)
+            print("Jogador 2: ")
+            print(j2)
+            Selecionado = Leds[random.randint(0, 3)] #ta selecionando mais de 1 por vez e adiciona muito no jogador2 
+            Selecionado.value(1)
+            print(Selecionado)
+            bot2.value(0)
       
