@@ -31,58 +31,64 @@ def sorteio(Leds):
     numero_sorteio = random.randint(0, 3)
     Selecionado = Leds[numero_sorteio]
     Selecionado.value(1)
-    
     print(Selecionado)
     return numero_sorteio
     #print(button2[numero_sorteio])Programa principal
     #print(button1[numero_sorteio])
-def visualizar():
-    print("Jogador 1:")
-    print(j1)
-    print("Jogador 2: ")
-    print(j2)
-    
+
+
 Leds, button1, button2 = setup()
-#numero_sorteio = sorteio(Leds)
-'''
+numero_sorteio = sorteio(Leds)
+
 print("BT")
 print(button2[numero_sorteio])
 print(button1[numero_sorteio])
 
+for led in Leds:
+    led.value(1)
+    time.sleep(1)
+    led.value(0)
+    
 '''
 j1=0
 j2=0
-visualizar()
-ativos1 = [0,0,0,0]
-ativos2 = [0,0,0,0]
+print(bot1.value())
+print(bot2.value())
+
+print("Jogador 1:")
+print(j1)
+print("Jogador 2: ")
+print(j2)
+
 
 while(1):
-    #print("Novo Sorteio")
-    for led in Leds:
-        led.value(0)
-    numero_sorteio = sorteio(Leds)
-    #print(numero_sorteio)
-    print("___________________________________________________")
-    while(1):
+    if bot1.value() == 1:
+        print("bot 1")
+        print(bot1.value())
+        Selecionado.value(0)#Apaga led selecionado ao clicar
+        bot1.value(0)
+        j1+=1
+        print("Jogador 1:")
+        print(j1)
+        print("Jogador 2: ")
+        print(j2)
+        print("Interno")
+        print(Selecionado)
+        break
+    
 
-        if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :
-            Leds[numero_sorteio].value(0)#Apaga led selecionado ao clicar
-            j1+=1
-            visualizar()
-            ativos1[numero_sorteio] = 1
-            print("vencedor j1")
-        elif button1[numero_sorteio].value() == 0 and ativos1[numero_sorteio] == 1:
-            ativos1[numero_sorteio] = 0
-            break
 
-        if button2[numero_sorteio].value() == 1 and ativos2[numero_sorteio] == 0 :
-            Leds[numero_sorteio].value(0)#Apaga led selecionado ao clicar
-            j2+=1
-            visualizar()
-            ativos2[numero_sorteio] = 1
-            print("vencedor j2")
-        elif button2[numero_sorteio].value() == 0 and ativos2[numero_sorteio] == 1:
-            ativos2[numero_sorteio] = 0
-            break
+    if bot2.value() == 1:
+        print("bot 2")
+        print(bot2.value())
+        Selecionado.value(0)#Apaga led selecionado ao clicar
+        j2+=1
+        print("Jogador 1:")
+        print(j1)
+        print("Jogador 2: ")
+        print(j2)
+        bot2.value(0)
+        break
+      '''
 
 
