@@ -7,20 +7,22 @@ def setup():
     Led_Vermelho = 21
     Led_Verde = 20
     Led_Amarelo2 = 19
+    botao11 = 18
+    botao21 = 17
 
     # Configura o pino da saída digital do sensorLed1 = Pin(Led_Amarelo, Pin.OUT)
     Led1 = Pin(Led_Amarelo, Pin.OUT)
     Led2 = Pin(Led_Vermelho, Pin.OUT)
     Led3 = Pin(Led_Verde, Pin.OUT)
     Led4 = Pin(Led_Amarelo2, Pin.OUT)
-    bot11 = Pin(18, Pin.IN,Pin.PULL_DOWN) #botao do led 1 (amarelo)--> jog1
-    bot21 = Pin(17, Pin.IN,Pin.PULL_DOWN) #botao do led 1 (amarelo)--> jog2
+    bot11 = Pin(botao11, Pin.IN,Pin.PULL_DOWN) #botao do led 1 (amarelo)--> jog1
+    bot21 = Pin(botao21, Pin.IN,Pin.PULL_DOWN) #botao do led 1 (amarelo)--> jog2
     bot12 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 2 (vermelho)--> jog1
-    bot22 = Pin(15, Pin.IN,Pin.PULL_DOWN) #botao do led 2 (vermelho)--> jog2
-    bot13 = Pin(14, Pin.IN,Pin.PULL_DOWN) #botao do led 3 (verde)--> jog1
-    bot23 = Pin(13, Pin.IN,Pin.PULL_DOWN) #botao do led 3 (verde)--> jog2
-    bot14 = Pin(12, Pin.IN,Pin.PULL_DOWN) #botao do led 4 (amarelo2)--> jog1
-    bot24 = Pin(11, Pin.IN,Pin.PULL_DOWN) #botao do led 4 (amarelo2)--> jog2
+    bot22 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 2 (vermelho)--> jog2
+    bot13 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 3 (verde)--> jog1
+    bot23 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 3 (verde)--> jog2
+    bot14 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 4 (amarelo2)--> jog1
+    bot24 = Pin(16, Pin.IN,Pin.PULL_DOWN) #botao do led 4 (amarelo2)--> jog2
     Leds = [Led1,Led2,Led3,Led4]
     button1 = [bot11,bot12,bot13,bot14]
     button2 = [bot21,bot22,bot23,bot24]
@@ -84,6 +86,5 @@ while(1):
         print(j2)
         bot2.value(0)
         break
-      '''
-
-
+      
+'''
