@@ -12,8 +12,8 @@ from machine import Pin, I2C
 # Importa a classe SSD1306_I2C da biblioteca ssd1306.py
 from ssd1306 import SSD1306_I2C
 #importa a classe j1 e j2 da aleatoriedade_led
-from aleatoriedade_led import j1, j2
-def display():
+#from aleatoriedade_led import j1, j2
+def display(j1,j2):
     # Define os pinos do Raspberry Pi Pico conectados ao barramento I2C 0
     i2c0_slc_pin = 9
     i2c0_sda_pin = 8
@@ -50,3 +50,8 @@ def display():
 
     # Atualiza o display
     display.show()
+def atualização():
+    # Define os pinos do Raspberry Pi Pico conectados ao barramento I2C 0
+    i2c0_slc_pin = 9
+    i2c0_sda_pin = 8
+    

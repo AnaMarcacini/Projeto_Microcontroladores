@@ -2,7 +2,6 @@
 from machine import Pin
 import random
 import Display_Pontuacao as dp
-from multiprocessing import Process
 def setup():
     # Define o pino do Raspberry Pi Pico conectado ao módulo PIR HC-SR501
     Led_Amarelo = 22
@@ -63,7 +62,7 @@ while(1):
     for led in Leds:
         led.value(0)
     numero_sorteio = sorteio(Leds)
-    p = Process(target = dp.display,args=(j1,j2))
+    p = dp.display(j1,j2)
     #print(numero_sorteio)
     print("___________________________________________________")
     while(1):
