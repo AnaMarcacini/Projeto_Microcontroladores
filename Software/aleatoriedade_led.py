@@ -67,7 +67,7 @@ while(1):
     print("___________________________________________________")
     while(1):
 
-        if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :
+        if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :           
             Leds[numero_sorteio].value(0)#Apaga led selecionado ao clicar
             j1+=1
             visualizar()
@@ -84,7 +84,7 @@ while(1):
             ativos2[numero_sorteio] = 1
             print("vencedor j2")
         elif button2[numero_sorteio].value() == 0 and ativos2[numero_sorteio] == 1:
-            ativos2[numero_sorteio] = 0
+            ativos2[numero_sorteio]
             break
 
 
