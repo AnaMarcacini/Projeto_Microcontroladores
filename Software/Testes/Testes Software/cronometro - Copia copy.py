@@ -12,7 +12,7 @@ import Display_Pontuacao as dp
 disp1 = I2C(1, scl=Pin(3), sda=Pin(2), freq=100000)
 oled = SSD1306_I2C(128, 32, disp1)
 clock = 1 # tempo para iniciar
-Tempo_de_Partida = 10 #tempo em segundos da partida
+Tempo_de_Partida = 40 #tempo em segundos da partida
 # Função para converter um valor de hora, minuto ou segundo em um formato "hh:mm:ss"
 def segundos_para_hms(segundos):
     h = segundos // 3600
