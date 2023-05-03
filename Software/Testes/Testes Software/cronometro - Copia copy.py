@@ -12,6 +12,7 @@ import Display_Pontuacao as dp
 disp1 = I2C(1, scl=Pin(3), sda=Pin(2), freq=100000)
 oled = SSD1306_I2C(128, 32, disp1)
 clock = 1 # tempo para iniciar
+Tempo_de_Partida = 10 #tempo em segundos da partida
 # Função para converter um valor de hora, minuto ou segundo em um formato "hh:mm:ss"
 def segundos_para_hms(segundos):
     h = segundos // 3600
@@ -27,7 +28,7 @@ def atualizar_display(tempo_restante):
     oled.show()
 
 # Configuração do temporizador
-tempo_restante = 10
+tempo_restante = Tempo_de_Partida
 temporizador = machine.Timer(-1)
 
 # Função a ser executada a cada segundo pelo temporizador
@@ -35,13 +36,11 @@ def callback_temporizador(timer):
     global tempo_restante, clock
     tempo_restante -= 1
     atualizar_display(tempo_restante)
-    if tempo_restante <= 0:
+    if tempo_restante <= 0:#Fim do temporizador
         temporizador.deinit()
-        clock = 0#fim do tempo
-        # aqui você pode colocar o código que deve ser executado quando o temporizador acabar
+        clock = 0 #fim do tempo
 
-# Inicia o temporizador e atualiza o display OLED com o tempo restante
-temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)
+temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)#começar o temporizador
 atualizar_display(tempo_restante)
 
 # Código a ser executado em conjunto com o temporizador
@@ -69,6 +68,7 @@ def setup():
     Leds = [Led1,Led2,Led3,Led4]
     button1 = [bot11,bot12,bot13,bot14]
     button2 = [bot21,bot22,bot23,bot24]
+    
     for led in Leds:
         led.value(0)
     return Leds,button1,button2
@@ -109,7 +109,7 @@ def vitorioso(j1,j2):
 
 #--------Codigo_Principal---------------------
 Leds, button1, button2 = setup()
-
+reset = Pin(4, Pin.IN,Pin.PULL_DOWN) #botao reset
 j1=0
 j2=0
 visualizar()
@@ -149,13 +149,22 @@ while(1):
         for led in Leds:
             led.value(0)
         #chamar display vitorioso
-        #vitorioso(j1,j2)
-        print(vitorioso(j1,j2))
+        vitorioso(j1,j2)
+        #print(vitorioso(j1,j2))
         
         for led in Leds:
             led.value(1)
             time.sleep(0.25)
-        #if botão reset
+        if reset.value() ==1:#botão recomeçar
+            clock = 1
+            j1=0
+            j2=0
+            tempo_restante = Tempo_de_Partida
+            temporizador = machine.Timer(-1)
+            temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)
+            atualizar_display(tempo_restante)
+    #Colocar buzer
+    print("sai")
 
 
 
