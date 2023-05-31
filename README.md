@@ -4,6 +4,7 @@ Esse trabalho se trata de um jogo interativo para todas as idades. Ele trabalha 
 <br>**Autores**:
 <br> Ana Helena Marcacini 20.01305-0
 <br>Isabelle Franchi Dinardi 20.00364-0
+<br> Laura Caroline P. Correia 20.00171-0
 <br>
 ## 1. Objetivo do projeto
 Criação de um jogo iterativo utilizando raspberrypypico (usando a linguagem: micropython) que treina a parte reativa do jogador de uma maneira divertida.
@@ -19,6 +20,19 @@ Para o desenvolvimento do projeto foi utilizado os materiais listados na tabela 
 <img src =https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/diagrama%20de%20blocos.jpeg> </img>
 ### 3.3 Montagem
 <img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/esquema%20de%20montagem.jpeg> </img>
+### 3.4 Finalização
+Para a finalização do projeto, foi feita,  com apoio do FabLab, uma caixa em MDF 3mm. 
+
+A caixa é dividida em 6 peças. Para a criação de cada peça, foi necessário a modelagem no software SolidWorks em arquivo .DXF.
+
+[- Arquivos para montagem da caixa](https://github.com/AnaMarcacini/Projeto_Microcontroladores/tree/main/Montagem%20da%20Caixa)
+### 3.5 Projeto Final
+[- Vídeo de explicação do projeto](https://youtu.be/n8cgg-nnSlI)
+
+[- Vídeo do jogo funcionando](https://youtu.be/rbLJBuj3GkU)
+
+<img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/Trabalho%20Pronto.jpeg> </img>
+
 **LAURA COLOCAR AQUI O ARQUIVO DO CORTE A LASER, OS VÍDEOS DO FUNCIONAMENTO E A FOTO DO PROJETO FINAL!!!!!!!**
 
 ## 4. Software
