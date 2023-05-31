@@ -33,7 +33,6 @@ A caixa é dividida em 6 peças. Para a criação de cada peça, foi necessário
 
 <img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/Trabalho%20Pronto.jpeg> </img>
 
-**LAURA COLOCAR AQUI O ARQUIVO DO CORTE A LASER, OS VÍDEOS DO FUNCIONAMENTO E A FOTO DO PROJETO FINAL!!!!!!!**
 
 ## 4. Software
 ### 4.1 Código principal
