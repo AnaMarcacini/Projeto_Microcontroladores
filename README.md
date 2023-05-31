@@ -7,10 +7,13 @@ Esse trabalho se trata de um jogo interativo para todas as idades. Ele trabalha 
 <br>
 ## 1. Objetivo do projeto
 Criação de um jogo iterativo utilizando raspberrypypico (usando a linguagem: micropython) que treina a parte reativa do jogador de uma maneira divertida.
-## 2. Componentes eletrônicos e esquema elétrico
+## 2. Lista/ levantamento de custo de componentes 
+Para o desenvolvimento do projeto foi utilizado:
+<img src =  > </img>
 
+## 3. Esquema elétrico
+<img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/Esquema%20Eletrico.jpeg > </img>
 ## Diagrama de blocos
-## Lista/ levantamento de custo de componentes
 ## Esquema elétrico
 ## Software (código)
 ## Hardware
