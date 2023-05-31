@@ -1,7 +1,50 @@
 # Importa as classes Pin e I2C da biblioteca machine para controlar o hardware do Raspberry Pi Pico
-from machine import Pin
+
+from machine import Pin, I2C
+from ssd1306 import SSD1306_I2C
+import time
+import math
+import micropython
+
 import random
 import Display_Pontuacao as dp
+# Configuração do display OLED
+disp1 = I2C(1, scl=Pin(3), sda=Pin(2), freq=100000)
+oled = SSD1306_I2C(128, 32, disp1)
+clock = 1 # tempo para iniciar
+Tempo_de_Partida = 40 #tempo em segundos da partida
+# Função para converter um valor de hora, minuto ou segundo em um formato "hh:mm:ss"
+def segundos_para_hms(segundos):
+    h = segundos // 3600
+    m = (segundos % 3600) // 60
+    s = segundos % 60
+    return "{:02d}:{:02d}:{:02d}".format(h, m, s)
+
+# Função para atualizar o display OLED com o tempo restante
+def atualizar_display(tempo_restante):
+    oled.fill(0)
+    oled.text("Tempo restante:", 0, 0)
+    oled.text(segundos_para_hms(tempo_restante), 0, 10)
+    oled.show()
+
+# Configuração do temporizador
+tempo_restante = Tempo_de_Partida
+temporizador = machine.Timer(-1)
+
+# Função a ser executada a cada segundo pelo temporizador
+def callback_temporizador(timer):
+    global tempo_restante, clock
+    tempo_restante -= 1
+    atualizar_display(tempo_restante)
+    if tempo_restante <= 0:#Fim do temporizador
+        temporizador.deinit()
+        clock = 0 #fim do tempo
+
+temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)#começar o temporizador
+atualizar_display(tempo_restante)
+
+# Código a ser executado em conjunto com o temporizador
+
 def setup():
     # Define o pino do Raspberry Pi Pico conectado ao módulo PIR HC-SR501
     Led_Amarelo = 22
@@ -25,6 +68,7 @@ def setup():
     Leds = [Led1,Led2,Led3,Led4]
     button1 = [bot11,bot12,bot13,bot14]
     button2 = [bot21,bot22,bot23,bot24]
+    
     for led in Leds:
         led.value(0)
     return Leds,button1,button2
@@ -43,14 +87,29 @@ def visualizar():
     print("Jogador 2: ")
     print(j2)
     
-Leds, button1, button2 = setup()
-#numero_sorteio = sorteio(Leds)
-'''
-print("BT")
-print(button2[numero_sorteio])
-print(button1[numero_sorteio])
+def vitorioso(j1,j2):
+    if j1>j2:
+        oled.fill(0)
+        oled.text("Vencedor:", 30, 10)
+        oled.text("Jogador 1", 30, 20)
+        oled.show()
+        return "J1"
+    if j2>j1:
+        oled.fill(0)
+        oled.text("Vencedor:", 30, 10)
+        oled.text("Jogador 2", 30, 20)
+        oled.show()
+        return "J2"
+    else:
+        oled.fill(0)
+        oled.text("Empate :(", 30, 20)
+        oled.show()
+        return "Empate"
 
-'''
+
+#--------Codigo_Principal---------------------
+Leds, button1, button2 = setup()
+reset = Pin(4, Pin.IN,Pin.PULL_DOWN) #botao reset
 j1=0
 j2=0
 visualizar()
@@ -65,9 +124,9 @@ while(1):
     p = dp.display(j1,j2)
     #print(numero_sorteio)
     print("___________________________________________________")
-    while(1):
+    while(clock):
 
-        if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :           
+        if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :
             Leds[numero_sorteio].value(0)#Apaga led selecionado ao clicar
             j1+=1
             visualizar()
@@ -84,7 +143,28 @@ while(1):
             ativos2[numero_sorteio] = 1
             print("vencedor j2")
         elif button2[numero_sorteio].value() == 0 and ativos2[numero_sorteio] == 1:
-            ativos2[numero_sorteio]
+            ativos2[numero_sorteio] = 0
             break
+    while(not clock):
+        for led in Leds:
+            led.value(0)
+        #chamar display vitorioso
+        vitorioso(j1,j2)
+        #print(vitorioso(j1,j2))
+        
+        for led in Leds:
+            led.value(1)
+            time.sleep(0.25)
+        if reset.value() ==1:#botão recomeçar
+            clock = 1
+            j1=0
+            j2=0
+            tempo_restante = Tempo_de_Partida
+            temporizador = machine.Timer(-1)
+            temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)
+            atualizar_display(tempo_restante)
+    #Colocar buzer
+    print("sai")
+
 
 
