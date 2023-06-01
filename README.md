@@ -19,6 +19,8 @@ Para o desenvolvimento do projeto foi utilizado os materiais listados na tabela 
 ### 3.2 Diagrama de blocos
 <img src =https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/diagrama%20de%20blocos.jpeg> </img>
 ### 3.3 Montagem
+Neste ponto foi idealizado como seriam pré-dispostos os componentes para um melhor entendimento e visualização aos jogadores, como mostrado na figura abaixo.
+
 <img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/esquema%20de%20montagem.jpeg> </img>
 ### 3.4 Finalização
 Para a finalização do projeto, foi feita,  com apoio do FabLab, uma caixa em MDF 3mm. 
@@ -30,6 +32,13 @@ A caixa é dividida em 6 peças. Para a criação de cada peça, foi necessário
 [- Vídeo de explicação do projeto](https://youtu.be/n8cgg-nnSlI)
 
 [- Vídeo do jogo funcionando](https://youtu.be/rbLJBuj3GkU)
+
+
+* Placa eletrônica fora da caixa: 
+
+<img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/Hardware%20soldado.jpeg> </img>
+
+* Montagem final:
 
 <img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/Trabalho%20Pronto.jpeg> </img>
 
