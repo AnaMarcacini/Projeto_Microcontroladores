@@ -19,7 +19,7 @@ Para o desenvolvimento do projeto foi utilizado os materiais listados na tabela 
 ### 3.2 Diagrama de blocos
 <img src =https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/diagrama%20de%20blocos.jpeg> </img>
 ### 3.3 Montagem
-Neste ponto foi idealizado como seriam pré-dispostos os componentes para um melhor entendimento e visualização aos jogadores, como mostrado na figura abaixo.
+Neste ponto foi idealizado como seriam predispostos os componentes para um melhor entendimento e visualização aos jogadores, como mostrado na figura abaixo.
 
 <img src = https://github.com/AnaMarcacini/Projeto_Microcontroladores/blob/main/Hardware/esquema%20de%20montagem.jpeg> </img>
 ### 3.4 Finalização
