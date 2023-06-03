@@ -11,7 +11,7 @@ import Display_Pontuacao as dp
 # Configuração do display OLED
 disp1 = I2C(1, scl=Pin(3), sda=Pin(2), freq=100000)
 oled = SSD1306_I2C(128, 32, disp1)
-clock = 1 # tempo para iniciar
+clock = 0 # tempo para iniciar
 Tempo_de_Partida = 40 #tempo em segundos da partida
 # Função para converter um valor de hora, minuto ou segundo em um formato "hh:mm:ss"
 def segundos_para_hms(segundos):
@@ -27,10 +27,6 @@ def atualizar_display(tempo_restante):
     oled.text(segundos_para_hms(tempo_restante), 0, 10)
     oled.show()
 
-# Configuração do temporizador
-tempo_restante = Tempo_de_Partida
-temporizador = machine.Timer(-1)
-
 # Função a ser executada a cada segundo pelo temporizador
 def callback_temporizador(timer):
     global tempo_restante, clock
@@ -39,11 +35,6 @@ def callback_temporizador(timer):
     if tempo_restante <= 0:#Fim do temporizador
         temporizador.deinit()
         clock = 0 #fim do tempo
-
-temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)#começar o temporizador
-atualizar_display(tempo_restante)
-
-# Código a ser executado em conjunto com o temporizador
 
 def setup():
     # Define o pino do Raspberry Pi Pico conectado ao módulo PIR HC-SR501
@@ -79,8 +70,6 @@ def sorteio(Leds):
     
     print(Selecionado)
     return numero_sorteio
-    #print(button2[numero_sorteio])Programa principal
-    #print(button1[numero_sorteio])
 def visualizar():
     print("Jogador 1:")
     print(j1)
@@ -115,17 +104,33 @@ j2=0
 visualizar()
 ativos1 = [0,0,0,0]
 ativos2 = [0,0,0,0]
-
+primeira_vez = True
 while(1):
-    #print("Novo Sorteio")
+    while(not clock):
+        for led in Leds:
+            led.value(0)
+        #chamar display vitorioso
+        if(not primeira_vez):
+            vitorioso(j1,j2)
+        #print(vitorioso(j1,j2))
+        for led in Leds:
+            led.value(1)
+            time.sleep(0.25)
+        if reset.value() ==1:#botão recomeçar
+            clock = 1
+            j1=0
+            j2=0
+            tempo_restante = Tempo_de_Partida
+            temporizador = machine.Timer(-1)
+            temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)
+            atualizar_display(tempo_restante)
     for led in Leds:
         led.value(0)
     numero_sorteio = sorteio(Leds)
     p = dp.display(j1,j2)
-    #print(numero_sorteio)
     print("___________________________________________________")
     while(clock):
-
+        primeira_vez = False
         if button1[numero_sorteio].value() == 1 and ativos1[numero_sorteio] == 0  :
             Leds[numero_sorteio].value(0)#Apaga led selecionado ao clicar
             j1+=1
@@ -145,26 +150,7 @@ while(1):
         elif button2[numero_sorteio].value() == 0 and ativos2[numero_sorteio] == 1:
             ativos2[numero_sorteio] = 0
             break
-    while(not clock):
-        for led in Leds:
-            led.value(0)
-        #chamar display vitorioso
-        vitorioso(j1,j2)
-        #print(vitorioso(j1,j2))
-        
-        for led in Leds:
-            led.value(1)
-            time.sleep(0.25)
-        if reset.value() ==1:#botão recomeçar
-            clock = 1
-            j1=0
-            j2=0
-            tempo_restante = Tempo_de_Partida
-            temporizador = machine.Timer(-1)
-            temporizador.init(period=1000, mode=machine.Timer.PERIODIC, callback=callback_temporizador)
-            atualizar_display(tempo_restante)
-    #Colocar buzer
-    print("sai")
+
 
 
 
